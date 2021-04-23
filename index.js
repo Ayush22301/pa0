@@ -25,11 +25,9 @@ decdata.oninput = function (x){
     encdata.value = plainText;
 }
 
-
-
-//encryption function taking plaintext and key
 function encrypt(s, x)
 {
+    let res = "";
     for (i = 0; i < s.length; i++)
     {
          if (s[i] >= 'A' && s[i] <= 'Z')  // for capital alphabets
@@ -39,7 +37,7 @@ function encrypt(s, x)
             crnt += x;
             crnt %= 26;
             crnt += aval;
-            return  String.fromCharCode(crnt);
+            res += String.fromCharCode(crnt);
         }
         else if (s[i] >= 'a' && s[i] <= 'z')   // for small alphabets
         {
@@ -48,19 +46,21 @@ function encrypt(s, x)
             crnt += x;       //increasing val by key
             crnt %= 26;
             crnt += valA;
-            return String.fromCharCode(crnt);
+            res += String.fromCharCode(crnt);
         }
         else            // only alphabets allowed NO other char or number
         {
-            return " enter char values!!!";
+            res += " enter char values!!!";
         }
     }
+    return res;
 }
 
-// decryption function taking ciphertext and key
+
 function decrypt(s, x)
 {
     x = 26 - x;
+    let res = "";
     for (i = 0; i < s.length; i++)
     {
         if (s[i] >= 'a' && s[i] <= 'z')  // for small alphabets
@@ -70,7 +70,7 @@ function decrypt(s, x)
             crnt += x;
             crnt %= 26;
             crnt += valA;
-            return String.fromCharCode(crnt);
+            res += String.fromCharCode(crnt);
         }
         else if (s[i] >= 'A' && s[i] <= 'Z')       // for capital alphabets
         {
@@ -79,11 +79,13 @@ function decrypt(s, x)
             crnt += x;
             crnt %= 26;
             crnt += aval;
-            return String.fromCharCode(crnt);
+            res += String.fromCharCode(crnt);
         }
         else                  // only alphabets allowed NO other char or number
         {
-            return "enter char values  !!!";
+            res += "enter char values  !!!";
         }
     }
+    return res;
 }
+
